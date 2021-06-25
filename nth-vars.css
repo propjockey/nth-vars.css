@@ -1,0 +1,57 @@
+/* adds --nth-child and --nth-of-type variables to every element */
+/* when placed in a calc, it holds the expected value in range [1,512] */
+/* --nth-child and --nth-of-type greater than 512 will evaluate to 0 */
+/* by Jane @ https://github.com/propjockey */
+
+* {
+  --nth-__cb0:0;--nth-__cb1:0;--nth-__cb2:0;--nth-__cb3:0;
+  --nth-__cb4:0;--nth-__cb5:0;--nth-__cb6:0;--nth-__cb7:0;
+  --nth-__cb8:0;--nth-child:(
+    var(--nth-__cb8) * 256 + var(--nth-__cb7) * 128 + var(--nth-__cb6) * 64 +
+    var(--nth-__cb5) * 32 + var(--nth-__cb4) * 16 + var(--nth-__cb3) * 8 +
+    var(--nth-__cb2) * 4 + var(--nth-__cb1) * 2 + var(--nth-__cb0)
+  );
+  --nth-__otb0:0;--nth-__otb1:0;--nth-__otb2:0;--nth-__otb3:0;
+  --nth-__otb4:0;--nth-__otb5:0;--nth-__otb6:0;--nth-__otb7:0;
+  --nth-__otb8:0;--nth-of-type:(
+    var(--nth-__otb8) * 256 + var(--nth-__otb7) * 128 + var(--nth-__otb6) * 64 +
+    var(--nth-__otb5) * 32 + var(--nth-__otb4) * 16 + var(--nth-__otb3) * 8 +
+    var(--nth-__otb2) * 4 + var(--nth-__otb1) * 2 + var(--nth-__otb0)
+  );
+}
+:nth-child(2n-1) { --nth-__cb0: 1; }
+:nth-child(4n-2), :nth-child(4n-1) { --nth-__cb1: 1; }
+:nth-child(8n-4), :nth-child(8n-3), :nth-child(8n-2), :nth-child(8n-1) { --nth-__cb2: 1; }
+:nth-child(16n-8), :nth-child(16n-7), :nth-child(16n-6), :nth-child(16n-5), :nth-child(16n-4),
+:nth-child(16n-3), :nth-child(16n-2), :nth-child(16n-1) { --nth-__cb3: 1; }
+:nth-child(32n-16), :nth-child(32n-15), :nth-child(32n-14), :nth-child(32n-13), :nth-child(32n-12),
+:nth-child(32n-11), :nth-child(32n-10), :nth-child(32n-9), :nth-child(32n-8), :nth-child(32n-7),
+:nth-child(32n-6), :nth-child(32n-5), :nth-child(32n-4), :nth-child(32n-3), :nth-child(32n-2),
+:nth-child(32n-1) { --nth-__cb4: 1; }
+:nth-child(n+32):nth-child(-n+63), :nth-child(n+96):nth-child(-n+127),
+:nth-child(n+160):nth-child(-n+191), :nth-child(n+224):nth-child(-n+255),
+:nth-child(n+288):nth-child(-n+319), :nth-child(n+352):nth-child(-n+383),
+:nth-child(n+416):nth-child(-n+447), :nth-child(n+480):nth-child(-n+511) { --nth-__cb5: 1; }
+:nth-child(n+64):nth-child(-n+127), :nth-child(n+192):nth-child(-n+255),
+:nth-child(n+320):nth-child(-n+383), :nth-child(n+448):nth-child(-n+511) { --nth-__cb6: 1; }
+:nth-child(n+128):nth-child(-n+255), :nth-child(n+384):nth-child(-n+511) { --nth-__cb7: 1; }
+:nth-child(n+256):nth-child(-n+511) { --nth-__cb8: 1; }
+:nth-child(512) { --nth-child: 512; } :nth-child(n+513) { --nth-child: 0; }
+:nth-of-type(2n-1) { --nth-__otb0: 1; }
+:nth-of-type(4n-2), :nth-of-type(4n-1) { --nth-__otb1: 1; }
+:nth-of-type(8n-4), :nth-of-type(8n-3), :nth-of-type(8n-2), :nth-of-type(8n-1) { --nth-__otb2: 1; }
+:nth-of-type(16n-8), :nth-of-type(16n-7), :nth-of-type(16n-6), :nth-of-type(16n-5), :nth-of-type(16n-4),
+:nth-of-type(16n-3), :nth-of-type(16n-2), :nth-of-type(16n-1) { --nth-__otb3: 1; }
+:nth-of-type(32n-16), :nth-of-type(32n-15), :nth-of-type(32n-14), :nth-of-type(32n-13), :nth-of-type(32n-12),
+:nth-of-type(32n-11), :nth-of-type(32n-10), :nth-of-type(32n-9), :nth-of-type(32n-8), :nth-of-type(32n-7),
+:nth-of-type(32n-6), :nth-of-type(32n-5), :nth-of-type(32n-4), :nth-of-type(32n-3), :nth-of-type(32n-2),
+:nth-of-type(32n-1) { --nth-__otb4: 1; }
+:nth-of-type(n+32):nth-of-type(-n+63), :nth-of-type(n+96):nth-of-type(-n+127),
+:nth-of-type(n+160):nth-of-type(-n+191), :nth-of-type(n+224):nth-of-type(-n+255),
+:nth-of-type(n+288):nth-of-type(-n+319), :nth-of-type(n+352):nth-of-type(-n+383),
+:nth-of-type(n+416):nth-of-type(-n+447), :nth-of-type(n+480):nth-of-type(-n+511) { --nth-__otb5: 1; }
+:nth-of-type(n+64):nth-of-type(-n+127), :nth-of-type(n+192):nth-of-type(-n+255),
+:nth-of-type(n+320):nth-of-type(-n+383), :nth-of-type(n+448):nth-of-type(-n+511) { --nth-__otb6: 1; }
+:nth-of-type(n+128):nth-of-type(-n+255), :nth-of-type(n+384):nth-of-type(-n+511) { --nth-__otb7: 1; }
+:nth-of-type(n+256):nth-of-type(-n+511) { --nth-__otb8: 1; }
+:nth-of-type(512) { --nth-of-type: 512; } :nth-of-type(n+513) { --nth-of-type: 0; }
